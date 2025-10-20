@@ -15,7 +15,7 @@
 
   imports =
     let
-      otherModules = [ ];
+      otherModules = [ ./secrets.nix ];
       dotfilesModules = with dotfiles.homeModules; [
         ai
         cli-tools
