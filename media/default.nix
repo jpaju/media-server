@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./music-assistant.nix
+  ];
+}

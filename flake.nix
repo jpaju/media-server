@@ -45,6 +45,7 @@
         modules = [
           ./system
           ./users
+          ./media
         ];
       };
     };
