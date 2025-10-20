@@ -6,5 +6,6 @@
     ./hardware-configuration.nix
     ./secrets
     ./ssh-server.nix
+    ./virtualization.nix
   ];
 }
