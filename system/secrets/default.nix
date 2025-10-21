@@ -25,6 +25,7 @@ in
 
     secrets.anthropic_api_key.owner = username;
 
+    secrets.cloudflare_api_token = { };
     secrets.restic_repository_password = { };
     secrets.smb_username = { };
     secrets.smb_password = { };
