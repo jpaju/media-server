@@ -14,16 +14,9 @@
     homeDirectory = userhome;
   };
 
-  imports =
-    let
-      otherModules = [ ./secrets.nix ];
-      dotfilesModules = with dotfiles.homeModules; [
-        ai
-        cli-tools
-        dev-tools
-        nix
-        shell
-      ];
-    in
-    dotfilesModules ++ otherModules;
+  imports = [
+    ./secrets.nix
+    dotfiles.exports.options
+    dotfiles.exports.home
+  ];
 }

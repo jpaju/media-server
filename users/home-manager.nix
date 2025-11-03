@@ -23,7 +23,7 @@ let
 
     systemSops = config.sops;
 
-    fishUtils = dotfiles.homeModules.fishUtils;
+    fishUtils = import "${dotfiles}/util/fish.nix";
     helix = dotfiles.inputs.helix;
     catppuccin = dotfiles.inputs.catppuccin;
   };
@@ -36,7 +36,10 @@ in
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = specialArgs;
       home-manager.backupFileExtension = "bak";
-      home-manager.users.${username} = import ./home.nix;
+      home-manager.users.${username} = {
+        dotfiles = config.dotfiles;
+        imports = [ ./home.nix ];
+      };
     }
   ];
 
