@@ -1,4 +1,4 @@
-{ ... }:
+{ systemStateVersion, ... }:
 {
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
@@ -30,5 +30,5 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
-  system.stateVersion = "25.05"; # DO NOT CHANGE THIS
+  system.stateVersion = systemStateVersion;
 }
