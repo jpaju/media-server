@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+
+  "timezone": "Europe/Helsinki",
+  "schedule": ["* * * * 6,0"],
+  "prHourlyLimit": 10,
+
+  "automerge": false,
+  "reviewers": ["jpaju"],
+  "semanticCommits": "disabled",
+  "commitMessageAction": "update:",
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^media/versions\\.json$"],
+      "matchStrings": ["\"musicAssistant\":\\s*\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "ghcr.io/music-assistant/server",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}

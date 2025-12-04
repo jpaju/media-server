@@ -1,11 +1,11 @@
 { ... }:
 let
+  versions = builtins.fromJSON (builtins.readFile ./versions.json);
   dataFolder = "/srv/music-assistant";
-  musicAssistantVersion = "2.6.2";
 in
 {
   virtualisation.oci-containers.containers.music-assistant = {
-    image = "ghcr.io/music-assistant/server:${musicAssistantVersion}";
+    image = "ghcr.io/music-assistant/server:${versions.musicAssistant}";
     autoStart = true;
     extraOptions = [ "--network=host" ];
 
