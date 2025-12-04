@@ -25,6 +25,7 @@ let
 
     fishUtils = import "${dotfiles}/util/fish.nix";
     helix = dotfiles.inputs.helix;
+    nix-ai-tools = dotfiles.inputs.nix-ai-tools.packages.${system};
     catppuccin = dotfiles.inputs.catppuccin;
   };
 in

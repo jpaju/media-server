@@ -25,6 +25,7 @@ in
 
     secrets.anthropic_api_key.owner = username;
     secrets.openai_api_key.owner = username;
+    secrets.context7_api_key.owner = username;
 
     secrets.cloudflare_api_token = { };
     secrets.restic_repository_password = { };
