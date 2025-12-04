@@ -1,7 +1,7 @@
 { ... }:
 let
   dataFolder = "/srv/music-assistant";
-  musicAssistantVersion = "2.6.0";
+  musicAssistantVersion = "2.6.2";
 in
 {
   virtualisation.oci-containers.containers.music-assistant = {
