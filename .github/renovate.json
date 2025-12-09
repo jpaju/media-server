@@ -14,7 +14,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^media/versions\\.json$"],
+      "managerFilePatterns": ["/^media/versions\\.json$/"],
       "matchStrings": ["\"musicAssistant\":\\s*\"(?<currentValue>[^\"]+)\""],
       "depNameTemplate": "ghcr.io/music-assistant/server",
       "datasourceTemplate": "docker"
