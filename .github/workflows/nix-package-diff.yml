@@ -1,0 +1,50 @@
+name: Nix package diff
+
+on:
+  pull_request:
+    paths:
+      - flake.lock
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+        with:
+          use-flakehub: false
+
+      - name: Build new system
+        run: nix build .#nixosConfigurations.media-server.config.system.build.toplevel -o new-system
+
+      - name: Checkout base branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          clean: false
+
+      - name: Build old system
+        run: nix build .#nixosConfigurations.media-server.config.system.build.toplevel -o old-system
+
+      - name: Generate diff
+        id: diff
+        run: |
+          diff_output=$(nix run nixpkgs#nvd -- diff ./old-system ./new-system 2>&1) || true
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$diff_output" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## Package diff
+
+            ```
+            ${{ steps.diff.outputs.diff }}
+            ```
