@@ -2,7 +2,10 @@
 {
   users.users."${username}" = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "podman"
+    ];
     shell = pkgs.fish;
   };
 
