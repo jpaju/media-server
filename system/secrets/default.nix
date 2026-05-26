@@ -2,14 +2,14 @@
   pkgs,
   config,
   username,
-  sops-nix,
+  inputs,
   ...
 }:
 let
   ageKeyFile = "/etc/sops/age/keys.txt";
 in
 {
-  imports = [ sops-nix.nixosModules.sops ];
+  imports = [ inputs.sops-nix.nixosModules.sops ];
 
   environment.systemPackages = with pkgs; [
     git
