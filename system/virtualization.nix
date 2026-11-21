@@ -14,7 +14,7 @@
       flags = [
         "--all"
         "--filter"
-        "until=720h" # 1 week
+        "until=168h" # 7 days
       ];
     };
   };
